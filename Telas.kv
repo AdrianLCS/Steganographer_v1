@@ -1,0 +1,76 @@
+GerenciadorDeTela:
+    TelaPrincipal:
+    TelaSecundaria:
+
+<TelaPrincipal>
+    name: 'principal'
+    id: first_tela
+    BoxLayout:
+        orientation:"vertical"
+
+        BoxLayout:
+            orientation:"vertical"
+            size: root.width, root.height
+            y_hint:0.3
+
+            padding: 5
+            spacing: 10
+
+            Image:
+                id: selected
+                source: ''
+
+
+            TextInput:
+                id: mensagem
+                text: ''
+
+        BoxLayout:
+            orientation:"vertical"
+            size_hint: 1, 0.3
+
+            TextInput:
+                id: senha
+
+            Button:
+			    text: 'Procurar Imagem'
+			    on_release: app.root.current = 'secundaria'
+
+            Button:
+			    text: 'Ocultar Mensagem na Imagem'
+			    on_press: first_tela.ocultar()
+			    on_release: first_tela.setImage()
+            Button:
+			    text: 'Revelar Mensagem da Imagem'
+			    on_press: first_tela.revelar()
+
+<TelaSecundaria>
+    name:'secundaria'
+    id: my_widget
+
+    BoxLayout:
+        orientation:"vertical"
+        size: root.width, root.height
+        BoxLayout:
+            orientation:"vertical"
+            size: root.width, root.height
+            y_hint: 0.1
+            padding: 10
+            spacing:5
+
+            Image:
+                id: my_image
+                source: ""
+
+            FileChooserIconView:
+                id: filechooser
+                on_selection: my_widget.selected(filechooser.selection)
+
+
+	    BoxLayout:
+            orientation:"vertical"
+            size_hint: 1 , 0.1
+            Button:
+			    text: "Selecionar"
+			    on_press:  my_widget.salvar(filechooser.selection)
+			    on_release: app.root.current = 'principal'

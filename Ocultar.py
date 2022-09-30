@@ -93,3 +93,4 @@ class Ocultar:
         self._registraTamanho()
         self._registaMensagem()
         self._salvar()
+

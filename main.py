@@ -1,16 +1,29 @@
 # -*- coding: utf-8 -*-
-
 from kivy.lang import Builder
-from kivy.uix.widget import Widget
 from kivy.app import App
+from kivy.uix.screenmanager import ScreenManager, Screen
 import Ocultar
 import Revelar
 
 path = ""
-aux = 0
-Builder.load_file('Maintela.kv')
 
-class TelaSecundaria(Widget):
+#define diferentes telas
+class GerenciadorDeTela(ScreenManager):
+    pass
+class TelaPrincipal(Screen):
+    def setImage(self):
+        global path
+        self.ids.selected.source = path
+    def ocultar(self):
+
+        global path
+        o = Ocultar.Ocultar(str(self.ids.mensagem.text), str(self.ids.senha.text), path)
+        o.run()
+    def revelar(self):
+        global path
+        r = Revelar.Revelar(str(self.ids.senha.text), path)
+        self.ids.mensagem.text = r.run()
+class TelaSecundaria(Screen):
     def selected(self, filename):
         try:
             self.ids.my_image.source = filename[0]
@@ -18,36 +31,13 @@ class TelaSecundaria(Widget):
             pass
     def salvar(self, filename):
         global path
-        path = self.ids.my_image.source = filename[0]
-        global aux
-        aux = 0
-        Steg().stop()
-        Builder.load_file('Maintela.kv')
-        Steg().run()
+        path = filename[0]
+        TelaPrincipal().setImage()
 
-
-class TelaPrincipal(Widget):
-    def procurar(self):
-        global aux
-        aux=1
-        Steg().stop()
-        Builder.load_file('Tela.kv')
-        Steg().run()
-        self.ids.selected_image.source=path
-
-    def ocultar(self):
-        o=Ocultar.Ocultar(str(self.ids.mensagem.text), str(self.ids.senha.text), path)
-        o.run()
-    def revelar(self):
-        r=Revelar.Revelar(str(self.ids.senha.text), path)
-        self.ids.mensagem.text =r.run()
-
+kv=Builder.load_file('Telas.kv')
 class Steg(App):
     def build(self):
-        if aux==0:
-            return TelaPrincipal()
-        else:
-            return TelaSecundaria()
+        return kv
 
 if __name__=='__main__':
     Steg().run()
