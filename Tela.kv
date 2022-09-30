@@ -1,0 +1,27 @@
+<TelaSecundaria>
+    id: my_widget
+    BoxLayout:
+
+
+        orientation:"vertical"
+        size: root.width, root.height
+        y: '50 dp'
+
+        padding: 50
+        spacing:20
+
+        Image:
+            id: my_image
+            source: ""
+
+        FileChooserIconView:
+            id: filechooser
+            on_selection: my_widget.selected(filechooser.selection)
+
+
+	BoxLayout:
+        orientation:"vertical"
+        size: root.width,'48dp'
+        Button:
+			text: "Selecionar"
+			on_press: my_widget.salvar(filechooser.selection)

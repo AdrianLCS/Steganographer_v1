@@ -1,0 +1,39 @@
+<TelaPrincipal>
+    id: first_tela
+
+    BoxLayout:
+        orientation:"vertical"
+        size: root.width, '400dp'
+        top: 1.
+
+        padding: 50
+        spacing:20
+
+        Image:
+            id: selected_image
+            source: ''
+
+        TextInput:
+            id: mensagem
+            text: ''
+
+    BoxLayout:
+        orientation: 'vertical'
+        size: root.width,'170dp'
+        y: '200dp'
+        TextInput:
+            id: senha
+        Button:
+			text: 'Procurar Imagem'
+			on_press: first_tela.procurar()
+        Button:
+			text: 'Ocultar Mensagem na Imagem'
+			on_press: first_tela.ocultar()
+        Button:
+			text: 'Revelar Mensagem da Imagem'
+			on_press: first_tela.revelar()
+
+
+
+
+
