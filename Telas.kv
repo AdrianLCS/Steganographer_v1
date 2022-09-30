@@ -5,6 +5,9 @@ GerenciadorDeTela:
 <TelaPrincipal>
     name: 'principal'
     id: first_tela
+    pos_hint: {'x': 0.,'y': 0.35}
+    size_hint: 1., 0.65
+
     BoxLayout:
         orientation:"vertical"
 
@@ -27,7 +30,7 @@ GerenciadorDeTela:
 
         BoxLayout:
             orientation:"vertical"
-            size_hint: 1, 0.3
+            size_hint: 1, 0.4
 
             TextInput:
                 id: senha
