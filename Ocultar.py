@@ -1,5 +1,6 @@
 from PIL import Image
 
+
 class Ocultar:
     def __init__(self, mensagem, senha, origem):
         self._path = origem
@@ -69,3 +70,13 @@ class Ocultar:
                             scont = 0
                         else:
                             scont += 1
+
+    def _salvar(self):
+        self._data.save(self._path[0:str(self._path).rfind(".")] + "v2.png")
+
+    def run(self):
+        self._criamensagembinaria()
+        self._criasenhabinaria()
+        self._registratamanho()
+        self._registamensagem()
+        self._salvar()

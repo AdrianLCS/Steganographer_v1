@@ -61,3 +61,4 @@ class Revelar:
         self._revelatamanho()
         self._revelamensagem()
         return self.mensagem
+
